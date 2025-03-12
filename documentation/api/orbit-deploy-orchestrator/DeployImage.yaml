@@ -1,0 +1,136 @@
+openapi: 3.0.0
+info:
+  title: Deploy Image API
+  version: 1.0.0
+  description: API for deploying container images within k8or Orbit.
+servers:
+  - url: /deploy
+paths:
+  /DeployImage.php:
+    post:
+      summary: Deploy Container Image
+      description: Initiates the deployment of a container image and logs the deployment process.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                PID:
+                  type: string
+                  description: Process ID.
+                imageMetadata:
+                  type: object
+                  properties:
+                    imageUID:
+                      type: string
+                      description: Unique ID of the image.
+                    imageName:
+                      type: string
+                      description: Name of the image.
+                    imageVersion:
+                      type: string
+                      description: Version of the image.
+                    imageCategory:
+                      type: string
+                      description: Category of the image.
+                    Description:
+                      type: string
+                      description: Description of the image.
+                    Part:
+                      type: string
+                      description: Part number.
+                    currentEnvironment:
+                      type: string
+                      description: Current environment.
+                  required:
+                    - imageUID
+                    - imageName
+                    - imageVersion
+                deploymentDetail:
+                  type: object
+                  properties:
+                    containerPort:
+                      type: string
+                      description: Container port.
+                    replicaNumber:
+                      type: string
+                      description: Number of replicas.
+                    cpuLimit:
+                      type: string
+                      description: CPU limit.
+                    memoryLimit:
+                      type: string
+                      description: Memory limit.
+                    clusterName:
+                      type: string
+                      description: Name of the cluster.
+                  required:
+                    - containerPort
+                    - replicaNumber
+                    - cpuLimit
+                    - memoryLimit
+                    - clusterName
+                userMetadata:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                      description: Username.
+                    firstName:
+                      type: string
+                      description: First name.
+                    lastName:
+                      type: string
+                      description: Last name.
+                    email:
+                      type: string
+                      description: Email.
+                  required:
+                    - username
+                    - firstName
+                    - lastName
+                    - email
+              required:
+                - PID
+                - imageMetadata
+                - deploymentDetail
+                - userMetadata
+      responses:
+        '200':
+          description: Image deployed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  PID:
+                    type: string
+                    description: Process ID.
+                  status:
+                    type: string
+                    description: Status of the deployment.
+                  message:
+                    type: string
+                    description: Message related to the deployment.
+                required:
+                  - PID
+                  - status
+                  - message
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The error status.
+                  message:
+                    type: string
+                    description: Error message.
+                required:
+                  - status
+                  - message

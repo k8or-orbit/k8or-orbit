@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  title: Transfer Image API
+  version: 1.0.0
+  description: API for transferring container images and Helm charts between environments.
+servers:
+  - url: /transfer
+paths:
+  /TransferImage.php:
+    post:
+      summary: Transfer Image and Helm Chart
+      description: Transfers a container image and its associated Helm chart from a development to a testing environment.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                PID:
+                  type: string
+                  description: Process ID.
+                imageMetadata:
+                  type: object
+                  properties:
+                    imageUID:
+                      type: string
+                      description: Unique ID of the image.
+                    imageName:
+                      type: string
+                      description: Name of the image.
+                    imageVersion:
+                      type: string
+                      description: Version of the image.
+                    imageCategory:
+                      type: string
+                      description: Category of the image.
+                    Description:
+                      type: string
+                      description: Description of the image.
+                    Part:
+                      type: string
+                      description: Part number.
+                    currentEnvironment:
+                      type: string
+                      description: Current environment.
+                    postID:
+                      type: string
+                      description: ID of the post to transfer.
+                    imageUrl:
+                      type: string
+                      description: Url of the image to be uploaded
+                  required:
+                    - imageUID
+                    - imageName
+                    - imageVersion
+                    - postID
+                    - imageUrl
+                userMetadata:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                      description: Username.
+                    firstName:
+                      type: string
+                      description: First name.
+                    lastName:
+                      type: string
+                      description: Last name.
+                    email:
+                      type: string
+                      description: Email.
+                  required:
+                    - username
+                    - firstName
+                    - lastName
+                    - email
+                eventMetadata:
+                  type: object
+                  properties:
+                    eventType:
+                      type: string
+                      description: Type of the event.
+                    timestamp:
+                      type: string
+                      description: Timestamp of the event.
+                  required:
+                    - eventType
+                    - timestamp
+              required:
+                - PID
+                - imageMetadata
+                - userMetadata
+                - eventMetadata
+      responses:
+        '200':
+          description: Image transfer process completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Status of the transfer.
+                  message:
+                    type: string
+                    description: Message related to the transfer.
+                required:
+                  - status
+                  - message
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The error status.
+                  message:
+                    type: string
+                    description: Error message.
+                required:
+                  - status
+                  - message

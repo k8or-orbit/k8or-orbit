@@ -1,0 +1,113 @@
+openapi: 3.0.0
+info:
+  title: Generate Kustomize Uploaded Image API
+  version: 1.0.0
+  description: API for generating and saving Kustomize charts for uploaded images.
+servers:
+  - url: /kustomize
+paths:
+  /GenerateKustomizeUploadedImage.php:
+    post:
+      summary: Generate and Save Kustomize Chart
+      description: Generates and saves Kustomize charts for uploaded images, logging the process.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageMetadata:
+                  type: object
+                  properties:
+                    imageName:
+                      type: string
+                      description: Name of the image.
+                    imageVersion:
+                      type: string
+                      description: Version of the image.
+                    imageCategory:
+                      type: string
+                      description: Category of the image.
+                    Description:
+                      type: string
+                      description: Description of the image.
+                    Part:
+                      type: string
+                      description: Part number.
+                    currentEnvironment:
+                      type: string
+                      description: Current environment.
+                  required:
+                    - imageName
+                    - imageVersion
+                    - imageCategory
+                userMetadata:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                      description: Username.
+                    firstName:
+                      type: string
+                      description: First name.
+                    lastName:
+                      type: string
+                      description: Last name.
+                    email:
+                      type: string
+                      description: Email.
+                  required:
+                    - username
+                    - firstName
+                    - lastName
+                    - email
+                eventMetadata:
+                  type: object
+                  properties:
+                    eventType:
+                      type: string
+                      description: Type of the event.
+                    timestamp:
+                      type: string
+                      description: Timestamp of the event.
+                  required:
+                    - eventType
+                    - timestamp
+              required:
+                - imageMetadata
+                - userMetadata
+                - eventMetadata
+      responses:
+        '200':
+          description: Kustomize chart generated and saved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Status of the operation.
+                  message:
+                    type: string
+                    description: Message related to the operation.
+                required:
+                  - status
+                  - message
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The error status.
+                  message:
+                    type: string
+                    description: Error message.
+                required:
+                  - status
+                  - message

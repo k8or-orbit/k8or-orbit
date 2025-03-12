@@ -1,0 +1,113 @@
+openapi: 3.0.0
+info:
+  title: Sync Image API
+  version: 1.0.0
+  description: API for synchronizing container images and Helm charts.
+servers:
+  - url: /syncmaster
+paths:
+  /SyncImage.php:
+    post:
+      summary: Synchronize Image and Helm Chart
+      description: Synchronizes a container image from S3 to Docker Hub and a Helm chart from DynamoDB to GitLab.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                PID:
+                  type: string
+                  description: Process ID.
+                imageMetadata:
+                  type: object
+                  properties:
+                    imageUID:
+                      type: string
+                      description: Unique ID of the image.
+                    imageName:
+                      type: string
+                      description: Name of the image.
+                    imageVersion:
+                      type: string
+                      description: Version of the image.
+                    imageCategory:
+                      type: string
+                      description: Category of the image.
+                    Description:
+                      type: string
+                      description: Description of the image.
+                    Part:
+                      type: string
+                      description: Part number.
+                    currentEnvironment:
+                      type: string
+                      description: Current environment.
+                  required:
+                    - imageUID
+                    - imageName
+                    - imageVersion
+                gitlabProjectId:
+                  type: string
+                  description: GitLab project ID.
+                filePath:
+                  type: string
+                  description: File path in GitLab.
+                branch:
+                  type: string
+                  description: GitLab branch.
+                action:
+                  type: string
+                  description: Action to perform.
+                environment:
+                  type: string
+                  description: Environment.
+              required:
+                - PID
+                - imageMetadata
+                - gitlabProjectId
+                - filePath
+                - branch
+                - action
+                - environment
+      responses:
+        '200':
+          description: Image and Helm chart synchronized successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  PID:
+                    type: string
+                    description: Process ID.
+                  status:
+                    type: string
+                    description: Status of the synchronization.
+                  message:
+                    type: string
+                    description: Message related to the synchronization.
+                  commit_id:
+                    type: string
+                    description: The commit ID from Gitlab.
+                required:
+                  - PID
+                  - status
+                  - message
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The error status.
+                  message:
+                    type: string
+                    description: Error message.
+                required:
+                  - status
+                  - message

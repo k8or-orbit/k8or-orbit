@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  title: Assign Image UID API
+  version: 1.0.0
+  description: API for assigning a unique ID to an image.
+servers:
+  - url: /transfer
+paths:
+  /AssignImageUID.php:
+    post:
+      summary: Assign Image UID
+      description: Assigns a unique ID to an image and logs the assignment process.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageMetadata:
+                  type: object
+                  properties:
+                    imageName:
+                      type: string
+                      description: Name of the image.
+                    imageVersion:
+                      type: string
+                      description: Version of the image.
+                    imageCategory:
+                      type: string
+                      description: Category of the image.
+                    Description:
+                      type: string
+                      description: Description of the image.
+                    Part:
+                      type: string
+                      description: Part number.
+                    currentEnvironment:
+                      type: string
+                      description: Current environment.
+                  required:
+                    - imageName
+                    - imageVersion
+              required:
+                - imageMetadata
+      responses:
+        '200':
+          description: Image UID assigned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Status of the assignment.
+                  result:
+                    type: object
+                    description: The result of the assignment operation.
+                required:
+                  - status
+                  - result
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The error status.
+                  message:
+                    type: string
+                    description: Error message.
+                required:
+                  - status
+                  - message

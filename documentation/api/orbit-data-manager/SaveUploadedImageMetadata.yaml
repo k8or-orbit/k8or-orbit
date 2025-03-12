@@ -1,0 +1,117 @@
+openapi: 3.0.0
+info:
+  title: Save Uploaded Image Metadata API
+  version: 1.0.0
+  description: API for saving metadata related to uploaded images, including user data, image metadata, and user input (Helm chart).
+servers:
+  - url: /metadata
+paths:
+  /SaveUploadedImageMetadata.php:
+    post:
+      summary: Save Uploaded Image Metadata
+      description: Saves user data, image metadata, and user input (Helm chart) to DynamoDB, logging the process.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageMetadata:
+                  type: object
+                  properties:
+                    imageName:
+                      type: string
+                      description: Name of the image.
+                    imageVersion:
+                      type: string
+                      description: Version of the image.
+                    imageCategory:
+                      type: string
+                      description: Category of the image.
+                    Description:
+                      type: string
+                      description: Description of the image.
+                    Part:
+                      type: string
+                      description: Part number.
+                    currentEnvironment:
+                      type: string
+                      description: Current environment.
+                  required:
+                    - imageName
+                    - imageVersion
+                    - imageCategory
+                userMetadata:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                      description: Username.
+                    firstName:
+                      type: string
+                      description: First name.
+                    lastName:
+                      type: string
+                      description: Last name.
+                    email:
+                      type: string
+                      description: Email.
+                  required:
+                    - username
+                    - firstName
+                    - lastName
+                    - email
+                userInputHelmChart:
+                  type: object
+                  description: User input related to the Helm chart. The structure of this object will vary based on user input.
+                eventMetadata:
+                  type: object
+                  properties:
+                    eventType:
+                      type: string
+                      description: Type of the event.
+                    timestamp:
+                      type: string
+                      description: Timestamp of the event.
+                  required:
+                    - eventType
+                    - timestamp
+              required:
+                - imageMetadata
+                - userMetadata
+                - userInputHelmChart
+                - eventMetadata
+      responses:
+        '200':
+          description: Data saved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Status of the operation.
+                  message:
+                    type: string
+                    description: Message related to the operation.
+                required:
+                  - status
+                  - message
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The error status.
+                  message:
+                    type: string
+                    description: Error message.
+                required:
+                  - status
+                  - message

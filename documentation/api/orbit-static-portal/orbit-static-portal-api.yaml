@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: Microservice API
+  version: 1.0.0
+  description: Bare minimum API definition for microservices.
+servers:
+  - url: / # Replace with the actual base URL
+paths:
+  /{endpoint}:
+    post:
+      summary: API Endpoint
+      description: Description of the API endpoint.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                # Add request body properties here
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add response body properties here
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string

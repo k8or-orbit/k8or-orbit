@@ -1,0 +1,142 @@
+openapi: 3.0.0
+info:
+  title: Upload - Upload Image API
+  version: 1.0.0
+  description: API for uploading an image and creating a corresponding post with metadata.
+servers:
+  - url: /upload
+paths:
+  /UploadImage.php:
+    post:
+      summary: Upload Image and Create Post
+      description: Uploads an image, creates a post with metadata, and logs the upload process.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                postMetadata:
+                  type: object
+                  properties:
+                    postData:
+                      type: object
+                      properties:
+                        post_title:
+                          type: string
+                          description: Title of the post.
+                        category_name:
+                          type: string
+                          description: Category name for the post.
+                        image_data:
+                          type: string
+                          description: Base64 encoded image data.
+                      required:
+                        - post_title
+                        - category_name
+                        - image_data
+                    post_meta:
+                      type: object
+                      description: Metadata associated with the post.
+                    PID:
+                      type: string
+                      description: Process ID.
+                  required:
+                    - postData
+                    - post_meta
+                    - PID
+                imageMetadata:
+                  type: object
+                  properties:
+                    imageName:
+                      type: string
+                      description: Name of the image.
+                    imageVersion:
+                      type: string
+                      description: Version of the image.
+                    imageCategory:
+                      type: string
+                      description: Category of the image.
+                    Description:
+                      type: string
+                      description: Description of the image.
+                    Part:
+                      type: string
+                      description: Part number.
+                    currentEnvironment:
+                      type: string
+                      description: Current environment.
+                  required:
+                    - imageName
+                    - imageVersion
+                    - imageCategory
+                userMetadata:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                      description: Username.
+                    firstName:
+                      type: string
+                      description: First name.
+                    lastName:
+                      type: string
+                      description: Last name.
+                    email:
+                      type: string
+                      description: Email.
+                  required:
+                    - username
+                    - firstName
+                    - lastName
+                    - email
+              required:
+                - postMetadata
+                - imageMetadata
+                - userMetadata
+      responses:
+        '200':
+          description: Image uploaded successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Status of the upload.
+                  message:
+                    type: string
+                    description: Message related to the upload.
+                  postId:
+                    type: string
+                    description: ID of the created post.
+                  post_name:
+                    type: string
+                    description: Name of the created post.
+                  guid:
+                    type: string
+                    description: GUID assigned to the post.
+                required:
+                  - status
+                  - message
+                  - postId
+                  - post_name
+                  - guid
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The error status.
+                  message:
+                    type: string
+                    description: Error message.
+                required:
+                  - status
+                  - message

@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: Validate - Validate Uploaded Image API
+  version: 1.0.0
+  description: API for validating an uploaded image, including temporary upload, validation, and final upload to the production bucket.
+servers:
+  - url: /validate
+paths:
+  /ValidateUploadedImage.php:
+    post:
+      summary: Validate Uploaded Image
+      description: Validates an uploaded image, temporarily uploads it, performs validation, and uploads it to the production bucket if valid.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: The image file to upload.
+                metadata:
+                  type: string
+                  description: JSON string containing image metadata.
+              required:
+                - image
+                - metadata
+      responses:
+        '200':
+          description: Image validation and upload successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Status of the validation and upload.
+                  result:
+                    type: object
+                    description: Result of the S3 upload.
+                required:
+                  - status
+                  - result
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The error status.
+                  message:
+                    type: string
+                    description: Error message.
+                required:
+                  - status
+                  - message

@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: Upload - Image Static Data API
+  version: 1.0.0
+  description: API for retrieving static data related to image uploads based on ICAO code.
+servers:
+  - url: /upload
+paths:
+  /ImageStaticData.php:
+    post:
+      summary: Get Image Static Data
+      description: Retrieves static data related to image uploads based on the provided ICAO code, including filter criteria and user data.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ICAOCode:
+                  type: string
+                  description: ICAO code for filtering static data.
+                PID:
+                  type: string
+                  description: Process ID.
+              required:
+                - ICAOCode
+      responses:
+        '200':
+          description: Static data retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Status of the retrieval.
+                  result:
+                    type: object
+                    properties:
+                      PID:
+                        type: string
+                        description: Process ID.
+                      filter_criteria:
+                        type: object
+                        description: Filter criteria based on the ICAO code.
+                      user_data:
+                        type: array
+                        items:
+                          type: object
+                          description: User data retrieved from the database.
+                    required:
+                      - filter_criteria
+                      - user_data
+                required:
+                  - status
+                  - result
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The error status.
+                  message:
+                    type: string
+                    description: Error message.
+                required:
+                  - status
+                  - message
