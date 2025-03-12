@@ -23,21 +23,21 @@ k8or Orbit is built as a collection of microservices, each responsible for a spe
 **Microservices:**
 
 * **Static Page Functionality:**
-    * **[orbit-static-portal](https://github.com/k8or-orbit/orbit-static-portal/tree/k8or-dev)**: Serves as the initial entry point for users, hosting the static pages that introduce k8or Orbit.
+    * **[Orbit Static Portal](https://github.com/k8or-orbit/orbit-static-portal/tree/k8or-dev)**: Serves as the initial entry point for users, hosting the static pages that introduce k8or Orbit.
 * **Deploy Functionality:**
-    * **[orbit-deploy-orchestrator](https://github.com/k8or-orbit/orbit-deploy-orchestrator/tree/k8or-dev)**: Acts as the control center for deploying applications and services within the k8or Orbit environment.
-    * **[orbit-syncmaster](https://github.com/k8or-orbit/orbit-syncmaster/tree/k8or-dev)**: Responsible for maintaining synchronization between different components and data sources within k8or Orbit.
+    * **[Orbit Deploy Orchestrator](https://github.com/k8or-orbit/orbit-deploy-orchestrator/tree/k8or-dev)**: Acts as the control center for deploying applications and services within the k8or Orbit environment.
+    * **[Orbit SyncMaster](https://github.com/k8or-orbit/orbit-syncmaster/tree/k8or-dev)**: Responsible for maintaining synchronization between different components and data sources within k8or Orbit.
 * **Transfer Functionality:**
-    * **[orbit-data-shuttle](https://github.com/k8or-orbit/orbit-data-shuttle/tree/k8or-dev)**: Functions as a data transport mechanism, facilitating the secure and efficient movement of data between various microservices.
+    * **[Orbit Data Shuttle](https://github.com/k8or-orbit/orbit-data-shuttle/tree/k8or-dev)**: Functions as a data transport mechanism, facilitating the secure and efficient movement of data between various microservices.
 * **Search Functionality:**
-    * **[orbit-board-navigator](https://github.com/k8or-orbit/orbit-board-navigator/tree/k8or-dev)**: Empowers users to effectively navigate and explore the various boards and visualizations available within k8or Orbit.
-    * **[viewport](https://github.com/k8or-orbit/viewport/tree/k8or-dev)**: Serves as a bridge between the frontend and the WordPress database, handling WordPress functionality.
+    * **[Orbit Board Navigator](https://github.com/k8or-orbit/orbit-board-navigator/tree/k8or-dev)**: Empowers users to effectively navigate and explore the various boards and visualizations available within k8or Orbit.
+    * **[ViewPort](https://github.com/k8or-orbit/viewport/tree/k8or-dev)**: Serves as a bridge between the frontend and the WordPress database, handling WordPress functionality.
 * **Upload Functionality:**
-    * **[orbit-upload-orchestrator](https://github.com/k8or-orbit/orbit-upload-orchestrator/tree/k8or-dev)**: Manages the upload process, handling various data types from the upload form and intelligently routing them.
-    * **[orbit-kustomize-transformer](https://github.com/k8or-orbit/orbit-kustomize-transformer/tree/k8or-dev)**: Leverages Kustomize to apply transformations and customizations to Kubernetes configurations.
-    * **[orbit-data-manager](https://github.com/k8or-orbit/orbit-data-manager/tree/k8or-dev)**: Provides comprehensive data management capabilities, handling storage, retrieval, and manipulation of various data types.
-    * **[orbit-artifact-uploader](https://github.com/k8or-orbit/orbit-artifact-uploader/tree/k8or-dev)**: Specializes in uploading artifacts, such as container images and deployment packages.
-    * **[orbit-image-validator](https://github.com/k8or-orbit/orbit-image-validator/tree/k8or-dev)**: Plays a role in ensuring the quality and security of uploaded application images.
+    * **[Orbit Upload Orchestrator](https://github.com/k8or-orbit/orbit-upload-orchestrator/tree/k8or-dev)**: Manages the upload process, handling various data types from the upload form and intelligently routing them.
+    * **[Orbit Kustomize Transformer](https://github.com/k8or-orbit/orbit-kustomize-transformer/tree/k8or-dev)**: Leverages Kustomize to apply transformations and customizations to Kubernetes configurations.
+    * **[Orbit Data Manager](https://github.com/k8or-orbit/orbit-data-manager/tree/k8or-dev)**: Provides comprehensive data management capabilities, handling storage, retrieval, and manipulation of various data types.
+    * **[Orbit Artifact Uploader](https://github.com/k8or-orbit/orbit-artifact-uploader/tree/k8or-dev)**: Specializes in uploading artifacts, such as container images and deployment packages.
+    * **[Orbit Image Validator](https://github.com/k8or-orbit/orbit-image-validator/tree/k8or-dev)**: Plays a role in ensuring the quality and security of uploaded application images.
 
 ## Contributing
 
