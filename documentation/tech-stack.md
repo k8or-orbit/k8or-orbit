@@ -1,6 +1,6 @@
 # k8or Orbit Technology Stack
 
-This document outlines the technology stack used for the **k8or Orbit** application.
+This document outlines the technology stack used for the **k8or Orbit** application. 
 
 ## Diagram: [View](https://github.com/k8or-orbit/k8or-orbit/blob/k8or-dev/documentation/diagram/k8or-orbit-component-high-level-architecture-diagram-v0-0-12-dia-k8d.pdf)
 
