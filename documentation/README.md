@@ -1,4 +1,4 @@
-# k8or Orbit Application's Image Management for Kubernetes on AWS
+# k8or Orbit Application's Image Management for Kubernetes on AWS. Initial Prototype Deployment Was Done on AWS, However the Same Can Be Replicated On-Prem or any Other Cloud Providers.
 
 k8or Orbit application simplifies container image management for Kubernetes deployments on AWS. This document describes available image manipulation actions.
 
