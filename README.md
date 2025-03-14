@@ -4,6 +4,10 @@
 
 Welcome to the k8or Orbit open-source project! This repository serves as the central hub for the k8or Orbit platform, providing a comprehensive overview of the project, its architecture, and how to contribute.
 
+## Diagram: [View](https://github.com/k8or-orbit/k8or-orbit/blob/k8or-dev/documentation/diagram/k8or-orbit-component-high-level-architecture-diagram-v0-0-13-dia-k8d.pdf)
+
+![Alt text](https://github.com/k8or-orbit/k8or-orbit/blob/k8or-dev/documentation/diagram/k8or-orbit-component-high-level-architecture-diagram-v0-0-13-dia-k8d.jpg)
+
 ## What is k8or Orbit?
 
 k8or Orbit is a Kubernetes-native platform designed to streamline the deployment, management, and scaling of containerized applications. It provides a user-friendly interface and a set of tools to simplify the complexities of Kubernetes, making it accessible to developers and operators of all levels.
